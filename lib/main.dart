@@ -68,25 +68,26 @@ class _StoryPageState extends State<StoryPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Expanded(
                 flex: 2,
-                //TODO: Step 26 - Use a Flutter Visibility Widget to wrap this TextButton.
-                //TODO: Step 28 - Set the "visible" property of the Visibility Widget to equal the output from the buttonShouldBeVisible() method in the storyBrain.
-                child: TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _storyBrain.nextStory(2);
-                    });
-                  },
-                  style: TextButton.styleFrom(backgroundColor: Colors.blue),
-                  child: Text(
-                    _storyBrain.getChoice2(),
-                    style: const TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
+                child: Visibility(
+                  visible: _storyBrain.buttonShouldBeVisible(),
+                  child: TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _storyBrain.nextStory(2);
+                      });
+                    },
+                    style: TextButton.styleFrom(backgroundColor: Colors.blue),
+                    child: Text(
+                      _storyBrain.getChoice2(),
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -98,5 +99,3 @@ class _StoryPageState extends State<StoryPage> {
     );
   }
 }
-
-//TODO: Step 29 - Run the app and test it against the Story Outline to make sure you've completed all the steps.
